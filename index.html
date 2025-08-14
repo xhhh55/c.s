@@ -1,181 +1,223 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rechnung Nr. 2025-08-0002</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rechnung – LUXURY CAR</title>
 <style>
-  @page { size: A4; margin: 22mm; }
-  *{box-sizing:border-box;font-family:"Segoe UI",Tahoma,Arial,sans-serif}
-  body{background:#f3f5f7;margin:0}
-  .sheet{width:210mm;min-height:297mm;margin:0 auto;background:#fff;box-shadow:0 10px 28px rgba(0,0,0,.08);padding:22mm;position:relative}
-  .top{display:flex;justify-content:space-between;align-items:flex-start}
-  .from h2{margin:0 0 6px;font-size:14px}
-  .from div,.from a{font-size:12.5px;line-height:1.65;color:#111;text-decoration:none}
-  .logo{width:120px;height:120px;display:flex;align-items:center;justify-content:center;border-radius:2px;background:#48d8e1;overflow:hidden}
-  .logo img{max-width:120px;max-height:120px;display:block}
-  .to{margin-top:18px}
-  .to h4{font-size:12.5px;margin:0 0 6px}
-  .to div{font-size:12.5px;line-height:1.6}
-  hr{border:none;border-top:1.5px solid #cfd6dd;margin:18px 0}
-  .meta{display:flex;gap:28px;font-size:12.5px;margin:6px 0 12px}
-  .meta b{font-weight:700}
-  table{width:100%;border-collapse:collapse;margin-top:6px;font-size:12.2px}
-  thead th{background:#0ba3c4;color:#fff;text-align:left;padding:8px 10px;border:1px solid #157e95;font-weight:700}
-  tbody td{padding:7px 10px;border:1px solid #dbe3ea;background:#fff}
-  tbody tr:nth-child(even) td{background:#f8fbfd}
-  .right{text-align:right}
-  .total-row td{background:#0ba3c4;color:#fff;font-weight:800}
-  .note{font-size:12.5px;margin-top:14px;line-height:1.7}
-  .thanks{font-size:12.5px;margin-top:18px}
-  .footer{margin-top:24mm;border-top:2px solid #1f2833;padding-top:8px;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:12px;font-size:12.2px}
-  .footer b{display:block;margin-bottom:6px}
-  .print-bar{position:sticky;top:0;z-index:5;display:flex;justify-content:flex-end;margin:10px auto 14px;width:210mm}
-  .btn-print{background:#0ba3c4;color:#fff;border:none;padding:10px 14px;border-radius:6px;font-size:14px;cursor:pointer}
-  .btn-print:active{transform:scale(.98)}
-  @media print{ body{background:#fff}.sheet{box-shadow:none;margin:0;padding:22mm}.print-bar{display:none} }
+  /* ===== A4 & Base ===== */
+  @page { size: A4; margin: 20mm 16mm 18mm 16mm; }
+  html, body { height:100%; background:#f3f4f6; }
+  body { margin:0; color:#000; font-family: Arial, "Segoe UI", Tahoma, sans-serif; -webkit-font-smoothing:antialiased; }
+
+  .sheet{ width:210mm; min-height:297mm; margin:0 auto; background:#fff; box-shadow:0 8px 26px rgba(0,0,0,.08); }
+  .wrap { padding:26mm 18mm 30mm; } /* + أسفل أكثر لمنع أي تراكب */
+ .logoBox img{ max-width:76mm; height:auto; display:block; }
+
+  /* ===== Header ===== */
+  .header{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .from{ font-size:13.2px; line-height:1.35; }
+  .from .name{ font-weight:700; font-size:14.4px; letter-spacing:.2px; }
+  .from a{ color:#1a0dab; text-decoration:underline; }
+  
+  /* ===== Address / Meta ===== */
+  .to{ margin-top:22px; font-size:13.2px; }
+  .to .lbl{ font-weight:700; display:block; margin-bottom:3px; }
+  .topRow{ display:grid; grid-template-columns: 1fr auto; gap:12mm; align-items:center; margin:18px 0 8px; font-size:13.2px; }
+  .topRow .right{ display:flex; gap:10mm; flex-wrap:wrap; white-space:nowrap; }
+  .topRow b{ font-weight:700; }
+
+  /* ===== Table ===== */
+  table{ width:100%; border-collapse:collapse; table-layout:fixed; font-size:12.6px; margin-top:8px; }
+  col.nr{  width:18mm; } col.det{ width:72mm; } col.dat{ width:28mm; }
+  col.net{ width:32mm; } col.tax{ width:32mm; } col.gro{ width:32mm; }
+
+  thead th{
+    background:#00a2ff;      /* أزرق */
+    color:#d40000;           /* أحمر */
+    border:1px solid #bfc7d1;
+    padding:7px 8px; text-align:center; font-weight:700;
+  }
+  tbody td{ border:1px solid #bfc7d1; padding:7px 8px; }
+  tbody td:nth-child(1){ text-align:center; }
+  tbody td:nth-child(2){ text-align:left; }
+  tbody td:nth-child(3){ text-align:center; white-space:nowrap; }
+  tbody td:nth-child(4),
+  tbody td:nth-child(5),
+  tbody td:nth-child(6){ text-align:right; white-space:nowrap; }
+
+  tfoot td{ border:1px solid #bfc7d1; padding:8px; font-weight:700; background:#f3f6fb; }
+  tfoot td:first-child{ text-align:right; }
+
+  /* ===== Notes ===== */
+  .notes{ margin:14px 0 18px; }
+  .note{ font-size:12.6px; color:#333; line-height:1.35; margin:0 0 6px; }
+
+  /* ===== Footer (داخل التدفق بدون absolute) ===== */
+  .footer{ margin-top:16px; }
+  .line{ border-top:2px solid #000; margin:10px 0 12px; }
+  .footGrid{
+    display:grid; grid-template-columns: 1.15fr 1.2fr 1fr; gap:14mm;
+    font-size:12.6px; line-height:1.35; align-items:start;
+  }
+  .footGrid b{ display:block; margin-bottom:2px; }
+  .footGrid div{ white-space:nowrap; } /* يمنع كسر الأسطر العشوائي */
+
+  /* Print */
+  @media print{
+    html, body{ background:#fff; }
+    .sheet{ box-shadow:none; }
+    a{ color:#000; text-decoration:none; }
+  }
 </style>
 </head>
 <body>
-
-<div class="print-bar">
-  <button class="btn-print" onclick="window.print()">🖨️ طباعة PDF</button>
-</div>
-
 <div class="sheet">
-  <div class="top">
-    <div class="from">
-      <h2>LUXURY CAR</h2>
-      <div>Gartenstraße&nbsp;44<br>29525 Uelzen</div>
-      <a href="mailto:Aufbereitung.bouhouichi@gmail.com">Aufbereitung.bouhouichi@gmail.com</a><br>
-      <div>Tel Nr.: 01631666435</div>
+  <div class="wrap">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="from">
+        <div class="name">LUXURY CAR</div>
+        Gartenstraße&nbsp;44<br>
+        29525&nbsp;Uelzen<br>
+        <a href="mailto:Aufbereitung.bouhouchi@gmail.com">Aufbereitung.bouhouchi@gmail.com</a><br>
+        Tel Nr.: 01631666435
+      </div>
+      <div class="logoBox">
+        <img src="photo_2025-05-13_14-29-43.jpg" alt="LUXURY CAR">
+      </div>
     </div>
-    <div class="logo"><img src="photo_2025-05-13_14-29-43.jpg" alt="LUXURY CAR"></div>
-  </div>
 
-  <div class="to">
-    <h4>AN:</h4>
-    <div>STERNPARTNER SE &amp; Co. KG (Tesmer)<br>Oldenstädter Str. 68, 29525 Uelzen</div>
-  </div>
-
-  <hr>
-
-  <div class="meta">
-    <div><b>Rechnung:</b> Rechnung Nr. 2025-08-0002</div>
-    <div><b>Kunden-Nr.:</b> 0003</div>
-    <div><b>Datum:</b> 09.08.2025</div>
-  </div>
-
-  <table id="items">
-    <thead>
-      <tr>
-        <th style="width:36px;">#</th>
-        <th>Fahrzeugdetails</th>
-        <th style="width:120px;">Datum</th>
-        <th style="width:120px;" class="right">NETTOBETRAG</th>
-        <th style="width:90px;" class="right">Mwst. 0%</th>
-        <th style="width:130px;" class="right">BRUTTOBETRAG</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- === أدخل القيم من الورقة هنا بالضبط === -->
-      <!-- 21.07 -->
-      <tr><td>1</td><td>CLA 35 AMG &nbsp;|&nbsp; 07658</td><td>21-07-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-      <tr><td>2</td><td>GLC 220d &nbsp;|&nbsp; 041277</td><td>21-07-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-      <tr><td>3</td><td>CLA 250e SB &nbsp;|&nbsp; 047???</td><td>21-07-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-
-      <!-- 22.07 -->
-      <tr><td>4</td><td>E450 DT &nbsp;|&nbsp; 2371 1381</td><td>22-07-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-      <tr><td>5</td><td>C200 &nbsp;|&nbsp; 237.183??</td><td>22-07-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-
-      <!-- 23.07 -->
-      <tr><td>6</td><td>A250 &nbsp;|&nbsp; 017677</td><td>23-07-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-      <tr><td>7</td><td>GLC 220d &nbsp;|&nbsp; 047645</td><td>23-07-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-      <tr><td>8</td><td>A35 Lim &nbsp;|&nbsp; 237 18378</td><td>23-07-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-      <tr><td>9</td><td>EQA 300 &nbsp;|&nbsp; 237 18379</td><td>23-07-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-
-      <!-- 24.07 -->
-      <tr><td>10</td><td>A200 d &nbsp;|&nbsp; WF LL 1401</td><td>24-07-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-
-      <!-- 25.07 -->
-      <tr><td>11</td><td>GLC 300 de &nbsp;|&nbsp; 041233?</td><td>25-07-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-
-      <!-- 01.08 -->
-      <tr><td>12</td><td>CLE 300? &nbsp;|&nbsp; 361,495?</td><td>01-08-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-      <tr><td>13</td><td>CLA 250e &nbsp;|&nbsp; 047?3?</td><td>01-08-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-
-      <!-- 04.08 -->
-      <tr><td>14</td><td>CLA 250e &nbsp;|&nbsp; 120?74</td><td>04-08-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-      <tr><td>15</td><td>E200? &nbsp;|&nbsp; 091?6?</td><td>04-08-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-      <tr><td>16</td><td>C300 eT &nbsp;|&nbsp; 041?13</td><td>04-08-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-
-      <!-- 05.08 -->
-      <tr><td>17</td><td>E 300 T &nbsp;|&nbsp; 052874881</td><td>05-08-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-      <tr><td>18</td><td>E 400 T &nbsp;|&nbsp; 051238?</td><td>05-08-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-      <tr><td>19</td><td>CL? 300 e &nbsp;|&nbsp; 102874?</td><td>05-08-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-
-      <!-- 06.08 -->
-      <tr><td>20</td><td>GLC 200 s? &nbsp;|&nbsp; 017783</td><td>06-08-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-      <tr><td>21</td><td>CLA 220 &nbsp;|&nbsp; 017784</td><td>06-08-2025</td><td class="right">120.00 EUR</td><td class="right">0.00 EUR</td><td class="right">120.00 EUR</td></tr>
-      <tr><td>22</td><td>EQB 300 &nbsp;|&nbsp; W1-893?50</td><td>06-08-2025</td><td class="right">60.00 EUR</td><td class="right">0.00 EUR</td><td class="right">60.00 EUR</td></tr>
-
-      <!-- ================ -->
-      <tr class="total-row">
-        <td colspan="3"><b>Gesamtkosten</b></td>
-        <td class="right"><b>—</b></td>
-        <td class="right"><b>0.00 EUR</b></td>
-        <td class="right"><b>—</b></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="note">
-    Es wird gemäß §19 Abs. 1 Umsatzsteuergesetz keine Umsatzsteuer erhoben.<br>
-    Der Gesamtbetrag ist ab Erhalt dieser Rechnung zahlbar innerhalb von 7 Tagen ohne Abzug.
-  </div>
-
-  <div class="thanks">
-    Vielen Dank, dass Sie sich für die Dienstleistungen der Luxury car entschieden haben!
-  </div>
-
-  <div class="footer">
-    <div>
-      <b>LUXURY CAR</b>
-      Inh. Lamjed Bouhouichi<br>Gartenstraße 44<br>29525 Uelzen
+    <!-- To & Meta -->
+    <div class="to">
+      <span class="lbl">AN:</span>
+      STERNPARTNER SE &amp; Co. KG (Tesmer)<br>
+      Oldenstädter Str. 65, 29525 Uelzen
     </div>
-    <div>
-      <b>Volksbank Uelzen Salzwedel</b>
-      IBAN: DE85 2586 2292 0029 9928 00<br>
-      BIC: GENODEF1EUB<br>
-      Konto Inh.: Lamjed Bouhouichi
+
+    <div class="topRow">
+      <div><b>Rechnung:</b></div>
+      <div class="right">
+        <div>Rechnung Nr. <b>2025-08-0004</b></div>
+        <div>Kunden-Nr.: <b>0003</b></div>
+        <div>Datum: <b id="invoice-date"></b></div>
+      </div>
     </div>
-    <div>
-      <b>Steuer-Nr.: 47/105/02489</b>
-      Finanzamt Uelzen-Lüchow
+
+    <!-- Table -->
+    <table aria-label="Rechnungstabelle">
+      <colgroup>
+        <col class="nr"><col class="det"><col class="dat"><col class="net"><col class="tax"><col class="gro">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Nr.</th>
+          <th>Fahrzeugdetails</th>
+          <th>Datum</th>
+          <th>NETTOBETRAG</th>
+          <th>Mwst. 0%</th>
+          <th>BRUTTOBETRAG</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5">Gesamtkosten</td>
+          <td id="grand-total">0,00&nbsp;EUR</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- Notes (فوق الفوتر الآن) -->
+    <div class="notes">
+      <p class="note">Es wird gemäß §19 Abs. 1 Umsatzsteuergesetz keine Umsatzsteuer erhoben.</p>
+      <p class="note">Der Gesamtbetrag ist ab Erhalt dieser Rechnung zahlbar innerhalb von 7 Tagen ohne Abzug.</p>
+      <p class="note">Vielen Dank, dass Sie sich für die Dienstleistungen der Luxury car entschieden haben!</p>
     </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="line"></div>
+      <div class="footGrid">
+        <div>
+          <b>LUXURY CAR</b>
+          Inh. Lamjed Bouhouchi<br>
+          Gartenstraße&nbsp;44<br>
+          29525&nbsp;Uelzen
+        </div>
+        <div>
+          <b>Volksbank Uelzen Salzwedel</b>
+          IBAN: DE85 2586 2292 0029 9928 00<br>
+          BIC: GENODEF1EUB<br>
+          Konto Inh.: Lamjed Bouhouchi
+        </div>
+        <div>
+          <b>Steuer-Nr.: 47/105/02489</b>
+          Finanzamt Uelzen-Lüchow
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <script>
-// احسب الإجمالي تلقائياً
-(function(){
-  const rows=[...document.querySelectorAll('#items tbody tr')];
-  let net=0, gross=0;
-  rows.forEach(tr=>{
-    if(!tr.classList.contains('total-row')){
-      const n=tr.children[3]?.textContent.replace(/[^\d.]/g,'');
-      const g=tr.children[5]?.textContent.replace(/[^\d.]/g,'');
-      if(n) net+=parseFloat(n);
-      if(g) gross+=parseFloat(g);
-    }
-  });
-  const t=document.querySelector('.total-row');
-  t.children[3].innerHTML = (net? net.toFixed(2) + ' EUR':'—');
-  t.children[5].innerHTML = (gross? gross.toFixed(2) + ' EUR':'—');
-})();
-</script>
+  // ===== تاريخ اليوم (de-DE) =====
+  document.getElementById('invoice-date').textContent =
+    new Date().toLocaleDateString('de-DE');
 
+  // ===== البيانات (مصَححة ومرتبة) =====
+  const rows = [
+    {det:'CLA 35 AMG — 047658',  date:'21.07', amount:60},
+    {det:'GLC 220d — 0412277',   date:'21.07', amount:120},
+    {det:'CLA 250e SB — 047677', date:'21.07', amount:120},
+
+    {det:'E450 DT — 23711381',   date:'22.07', amount:60},
+    {det:'C200 — 23718382',      date:'22.07', amount:60},
+
+    {det:'A250 — 017677',        date:'23.07', amount:60},
+    {det:'GLC 220d — 047645',    date:'23.07', amount:120},
+    {det:'A35 Lim — 23718378',   date:'23.07', amount:60},
+    {det:'EQA 300 — 23718379',   date:'23.07', amount:60},
+
+    {det:'A200d — WF LL 11001',  date:'24.07', amount:120},
+    {det:'GLC 300de — 0412237',  date:'25.07', amount:120},
+
+    {det:'CLE 300 — 3616493',    date:'01.08', amount:120},
+    {det:'CLA 250e — 047783',    date:'01.08', amount:120},
+
+    {det:'CLA 250e — 120874',    date:'04.08', amount:120},
+    {det:'E200 — 091926',        date:'04.08', amount:60},
+    {det:'C300 eT — 041713',     date:'04.08', amount:60},
+
+    {det:'E 300 T — 052374881',  date:'05.08', amount:60},
+    {det:'E 600 T — 051238',     date:'05.08', amount:120},
+    {det:'C 300e — 102841',      date:'05.08', amount:120},
+
+    {det:'GLC 200 — 017783',     date:'06.08', amount:120},
+    {det:'CLA 220 — 017784',     date:'06.08', amount:120},
+    {det:'EQB 300 — W1-893850',  date:'06.08', amount:60},
+  ];
+
+  // ===== بناء الصفوف + الإجمالي =====
+  const tbody = document.getElementById('tbody');
+  const fmt = n => n.toLocaleString('de-DE',{minimumFractionDigits:2, maximumFractionDigits:2}) + '\u00A0EUR';
+  let total = 0;
+  rows.forEach((r,i)=>{
+    total += r.amount;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${i+1}</td>
+      <td>${r.det}</td>
+      <td>${r.date}</td>
+      <td>${fmt(r.amount)}</td>
+      <td>${fmt(0)}</td>
+      <td>${fmt(r.amount)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  document.getElementById('grand-total').innerHTML = fmt(total);
+</script>
 </body>
 </html>
-
-
